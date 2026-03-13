@@ -270,6 +270,12 @@ textarea.txtCustomCss {
   outline: none !important;
 }
 
+/* --- Search Input Icon Fix --- */
+input[type="search"].emby-input,
+.emby-input.searchInput {
+  padding-left: 2.5em !important;
+}
+
 /* --- Global Buttons & Lists --- */
 .paperListbox-selected {
   background-color: var(--my-gold-transparent) !important;
