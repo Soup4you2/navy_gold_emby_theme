@@ -262,6 +262,15 @@ textarea.txtCustomCss {
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
 }
 
+/* --- Fix for cut-off text in disabled/active select menus --- */
+.emby-select, 
+.emby-select[disabled],
+.trackSelectionField .emby-select {
+  height: auto !important;
+  min-height: 35px !important; /* Adjust if you want them taller */
+  line-height: normal !important;
+}
+
 .emby-input:focus, 
 .emby-select:focus, 
 .emby-textarea:focus {
@@ -327,29 +336,61 @@ input[type="search"].emby-input,
   background-color: transparent !important; 
 }
 
-/* --- Cast Portraits (Round) --- */
+/* --- Cast Portraits (Oval) --- */
 .peopleSection .card, .personCard, .peopleSection .cardPadder-portrait,
 .peopleSection .cardContent-background, .peopleSection .cardImageContainer,
 .peopleSection .cardBox, .personCard .cardBox {
-  border-radius: 50% !important;
+  /* This creates the oval by making the height greater than the width */
+  border-radius: 50% / 40% !important; 
 }
 
 .peopleSection .card, .personCard, .peopleSection .cardPadder-portrait {
-  aspect-ratio: 1 / 1 !important; 
+  /* Change 1/1 to 2/3 for a vertical portrait oval */
+  aspect-ratio: 2 / 3 !important; 
 }
 
 .peopleSection .cardContent-background, .peopleSection .cardImageContainer {
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7) !important;
+  border-radius: 999px !important; /* Ensures the container follows the oval */
+  overflow: hidden !important;
 }
 
-.peopleSection .cardImageContainer img { object-fit: cover !important; }
-.peopleSection .card-hoverable:hover .cardOverlayContainer { border-radius: 50% !important; }
+.peopleSection .cardImageContainer img { 
+  object-fit: cover !important; 
+}
+
+.peopleSection .card-hoverable:hover .cardOverlayContainer { 
+  border-radius: 999px !important; 
+}
 
 .peopleSection .card:hover .cardContent, 
 .peopleSection .card:hover .cardImageContainer,
 .personCard:hover .cardContent, 
 .personCard:hover .cardImageContainer {
-  border-radius: 50% !important;
+  border-radius: 999px !important;
+}
+
+/* --- Cast & Crew Text Styling --- */
+.peopleSection .cardText-first {
+    font-family: 'Oswald', sans-serif !important;
+    color: var(--my-gold) !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.1em !important;
+    margin-top: 10px !important;
+}
+
+.peopleSection .cardText-secondary {
+    font-family: 'Sofia Sans', sans-serif !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-style: italic;
+    font-size: 0.9em !important;
+}
+
+/* Optional: Centers the text perfectly under the ovals */
+.peopleSection .cardText {
+    text-align: center !important;
+    width: 100%;
 }
 
 /* ============================================================
