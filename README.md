@@ -1,3 +1,7 @@
+Add the contents of the CSS into ember inside the general adrea under administration 
+
+OR
+
 Add to the custom CSS area in emby to always apply the latest updates:
 
 ```css
