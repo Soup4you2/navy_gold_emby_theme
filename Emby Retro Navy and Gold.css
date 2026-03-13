@@ -407,6 +407,7 @@ div.verticalSection.peopleSection { order: 3; margin-top: 20px; }
   text-transform: uppercase;
   padding: 2px 8px !important;
   margin-right: 8px !important;
+  margin-bottom: 8px !important; /* Added to prevent vertical cramping on wrap */
 }
 
 .mediaInfoItem:hover {
@@ -514,8 +515,8 @@ div.verticalSection.peopleSection { order: 3; margin-top: 20px; }
   border: 2px solid var(--theme-primary-color) !important;
   box-shadow: 0 0 15px var(--retro-glow), inset 0 0 10px rgba(255, 185, 0, 0.1) !important;
   border-radius: 8px !important;
-  transform: scale(1.02);
-  z-index: 10;
+  z-index: 10 !important; /* Added !important to ensure the glow sits above other cells */
+  /* Removed transform: scale(1.02) to prevent grid clipping */
 }
 
 .guide-currentTimeIndicator {
