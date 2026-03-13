@@ -1,0 +1,682 @@
+/* ============================================================
+   EMBY / JELLYFIN CUSTOM THEME: RETRO NAVY & GOLD
+   ============================================================ */
+
+/* ============================================================
+   01. IMPORTS & VARIABLES
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+:root, html, .theme-dark, .theme-light, .selection-accent-color {
+  /* Custom Master Palette (Source of Truth) */
+  --my-gold: #ffb900;
+  --my-gold-transparent: rgba(255, 185, 0, 0.2);
+  --retro-navy: #000814;
+  --retro-navy-light: #001d3d;
+  --retro-glow: rgba(255, 185, 0, 0.4);
+
+  /* Emby/Jellyfin Theme Overrides */
+  --theme-primary-color: var(--my-gold) !important;
+  --theme-accent-color: var(--my-gold) !important;
+  --theme-accent-text-color: var(--my-gold) !important;
+  --theme-checked-color: var(--my-gold) !important;
+  
+  --theme-icon-focus-background: var(--my-gold-transparent) !important;
+  --theme-selection-background: var(--my-gold-transparent) !important;
+  --button-accent-flat-background: var(--my-gold-transparent) !important;
+}
+
+/* Carpet-bomb injected user accent classes to strictly use gold */
+html[class*="theme-accent-"], 
+body[class*="theme-accent-"], 
+.theme-accent-default {
+  --theme-primary-color: var(--my-gold) !important;
+  --theme-accent-color: var(--my-gold) !important;
+  --theme-accent-text-color: var(--my-gold) !important;
+  --theme-checked-color: var(--my-gold) !important;
+  --theme-selection-background: var(--my-gold-transparent) !important;
+  --button-accent-flat-background: var(--my-gold-transparent) !important;
+  --theme-icon-focus-background: var(--my-gold-transparent) !important;
+}
+
+/* ============================================================
+   02. BASE STYLES & LAYOUT
+   ============================================================ */
+/* --- Backgrounds & Body --- */
+html {
+  background: radial-gradient(circle, rgba(0,29,61,1) 0%, rgba(0,8,20,1) 85%) !important;
+  background-attachment: fixed !important;
+}
+
+body { 
+  font-family: 'Sofia Sans', sans-serif; 
+}
+
+.mainAnimatedPages, .view, .page {
+  background: transparent !important;
+}
+
+.backgroundContainer {
+  background-color: rgba(0, 8, 20, 0.25) !important; 
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+}
+
+.backdropImage {
+  opacity: 0.3 !important;
+}
+
+/* --- Global Typography Overrides --- */
+html, body, .theme-light, .theme-dark {
+  color: #ececec !important; 
+}
+
+.theme-light .secondaryText, 
+.theme-light .textActionButton,
+.theme-light .cardText-secondary {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.pageTitle, .sectionTitle {
+  font-family: 'Oswald', sans-serif !important;
+  color: var(--theme-primary-color) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
+}
+/* --- Change the custom CSS box to be slightly larger --- */
+textarea.txtCustomCss {
+  min-height: 1000px;
+  min-width: 1000px;
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar { 
+  width: 8px; 
+  height: 8px; 
+}
+::-webkit-scrollbar-track { 
+  background: var(--retro-navy); 
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+  border: 2px solid var(--retro-navy);
+}
+::-webkit-scrollbar-thumb:hover { 
+  background: var(--theme-primary-color); 
+}
+
+/* ============================================================
+   03. NAVIGATION (Header, Sidebar & Tabs)
+   ============================================================ */
+/* --- Header --- */
+.skinHeader-withBackground, .skinHeader {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important; 
+  box-shadow: none !important;    
+}
+
+.headerLeft { display: flex !important; } 
+.headerLogo, .headerLeft img { display: none !important; }
+.headerButton[title="Menu"], .headerButton.btnMenu {
+  color: var(--theme-primary-color) !important;
+}
+
+/* --- Sidebar --- */
+.mainDrawer {
+  background-color: var(--retro-navy) !important;
+  border-right: 1px solid rgba(255, 185, 0, 0.15) !important;
+}
+
+.navDrawerListItemBody, .emby-collapsible-title {
+  font-size: 1.1em !important;
+}
+
+.navMenuOption-selected {
+  background: var(--theme-icon-focus-background) !important;
+  border-left: none !important;
+  box-shadow: inset 10px 0 15px rgba(255, 185, 0, 0.1) !important;
+}
+
+.navMenuOption-selected::before,
+.navMenuOption-selected::after {
+  display: none !important;
+}
+
+.navMenuOption-selected i.navDrawerListItemIcon {
+  color: var(--theme-primary-color) !important;
+}
+
+@media (min-width: 50em) {
+  .page-withFullDrawer, 
+  .skinBody-withFullDrawer .page, 
+  .page-withDockedDrawer {
+    margin-left: 240px !important;
+    width: calc(100% - 240px) !important;
+    left: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .skinHeader-withFullDrawer,
+  .skinHeader-withDockedDrawer {
+    left: 240px !important;
+    width: calc(100% - 240px) !important;
+    margin-left: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .mainDrawer-docked {
+    width: 240px !important;
+    display: block !important;
+  }
+}
+
+/* --- Compact Tabs & Pill Navigation --- */
+.videoOsdBottom .emby-tabs-container, 
+.emby-tabs-container {
+  background: rgba(0, 8, 20, 0.4) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 50px !important;
+  padding: 10px 20px !important; 
+  margin: 10px auto !important;
+  width: auto !important;
+  max-width: 98% !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  overflow: visible !important; 
+  scrollbar-width: none; 
+  justify-content: center !important; 
+  align-items: center !important;
+  gap: 12px !important; 
+}
+
+.emby-tabs-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+.videoOsdBottom .emby-tab-button,
+.emby-tab-button {
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  font-size: 0.72em !important;     
+  letter-spacing: 1px !important; 
+  color: rgba(255, 255, 255, 0.6) !important;
+  border-radius: 30px !important;
+  margin: 0 !important;         
+  padding: 0.6em 1.4em !important;     
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.2 !important; 
+  height: auto !important;
+  flex-shrink: 0 !important; 
+  transition: all 0.2s ease-in-out !important;
+  border: none !important;
+}
+
+.videoOsdBottom .emby-tab-button-active,
+.emby-tab-button-active {
+  background: var(--my-gold) !important;
+  color: #000 !important;
+  box-shadow: 0 0 15px var(--retro-glow) !important;
+  border-radius: 50px !important;
+  opacity: 1 !important;
+}
+
+.emby-tab-button:hover:not(.emby-tab-button-active) {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--my-gold) !important;
+}
+
+/* ============================================================
+   04. COMPONENTS (Forms, Buttons, Dialogs)
+   ============================================================ */
+/* --- Dialogs & Panels --- */
+.dialogBackdrop {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.dialog, .formDialog, .actionSheet {
+  background-color: rgba(0, 20, 40, 0.8) !important; 
+  backdrop-filter: blur(30px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(160%) !important;
+  border: 1px solid rgba(255, 185, 0, 0.25) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  color: #ececec !important; 
+}
+
+.formDialogHeader, .formDialogFooter {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.itemSelectionPanel, .selectionCommandsPanel {
+  background-color: var(--retro-navy-light) !important;
+  border: 1px solid var(--theme-primary-color) !important;
+  color: #fff !important;
+}
+
+/* --- Inputs & Selects --- */
+.emby-input, 
+.emby-select, 
+.emby-textarea {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+  border-radius: 6px !important; 
+  background-color: rgba(0, 20, 40, 0.8) !important; 
+  color: #fff !important;
+  padding: 0.5em 1em !important;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+}
+
+.emby-input:focus, 
+.emby-select:focus, 
+.emby-textarea:focus {
+  border: 2px solid var(--theme-primary-color) !important;
+  box-shadow: 0 0 15px var(--retro-glow) !important;
+  outline: none !important;
+}
+
+/* --- Global Buttons & Lists --- */
+.paperListbox-selected {
+  background-color: var(--my-gold-transparent) !important;
+  color: var(--my-gold) !important;
+}
+
+.button-submit, 
+.button-accent-flat {
+  background-color: var(--theme-primary-color) !important;
+  color: #000 !important; 
+}
+
+/* ============================================================
+   05. COMPONENTS (Cards & Portraits)
+   ============================================================ */
+/* --- Standard Media Cards --- */
+.cardContent, .cardImageContainer {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.75) !important;
+  border: 2px solid transparent !important;
+  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out !important;
+}
+
+.card:hover {
+  transform: none !important;  
+}
+
+.card:hover .cardContent, 
+.card:hover .cardImageContainer {
+  border: 2px solid var(--theme-primary-color) !important;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.9), 
+              0 0 15px var(--retro-glow), 
+              inset 0 0 10px rgba(255, 185, 0, 0.1) !important;
+  border-radius: 12px !important; 
+}
+
+.cardOverlayFab-primary { display: none !important; }
+.innerCardFooter { text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+
+.itemProgressBarForeground { 
+  background-color: var(--theme-primary-color) !important; 
+  box-shadow: 0 0 10px var(--retro-glow), 0 0 5px var(--theme-primary-color) !important;
+  border-radius: 2px !important; 
+}
+
+/* Remove yellow tint over media posters */
+.card:hover .cardOverlayContainer,
+.card-selected .cardOverlayContainer,
+.card.show-focus .cardOverlayContainer {
+  background-color: transparent !important; 
+}
+
+/* --- Cast Portraits (Round) --- */
+.peopleSection .card, .personCard, .peopleSection .cardPadder-portrait,
+.peopleSection .cardContent-background, .peopleSection .cardImageContainer,
+.peopleSection .cardBox, .personCard .cardBox {
+  border-radius: 50% !important;
+}
+
+.peopleSection .card, .personCard, .peopleSection .cardPadder-portrait {
+  aspect-ratio: 1 / 1 !important; 
+}
+
+.peopleSection .cardContent-background, .peopleSection .cardImageContainer {
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7) !important;
+}
+
+.peopleSection .cardImageContainer img { object-fit: cover !important; }
+.peopleSection .card-hoverable:hover .cardOverlayContainer { border-radius: 50% !important; }
+
+.peopleSection .card:hover .cardContent, 
+.peopleSection .card:hover .cardImageContainer,
+.personCard:hover .cardContent, 
+.personCard:hover .cardImageContainer {
+  border-radius: 50% !important;
+}
+
+/* ============================================================
+   06. VIEWS: LOGIN PAGE
+   ============================================================ */
+#loginPage .readOnlyContent {
+  background: rgba(0, 20, 40, 0.6) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 185, 0, 0.2) !important;
+  border-radius: 15px !important;
+  padding: 2em !important;
+}
+
+#loginPage .card:hover .cardImageContainer {
+  border: 2px solid var(--theme-primary-color) !important;
+  box-shadow: 0 0 20px var(--retro-glow) !important;
+}
+
+#loginPage .cardText {
+  font-family: 'Oswald', sans-serif !important;
+  color: var(--theme-primary-color) !important;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   07. VIEWS: MEDIA DETAIL PAGE
+   ============================================================ */
+/* --- Layout Order --- */
+div.verticalSection.seriesItemsSection { order: 1; }
+div.verticalSection.itemNextUpSection { order: 2; }
+div.verticalSection.peopleSection { order: 3; margin-top: 20px; }
+
+/* --- Info Banner --- */
+.infoBanner {
+  background: var(--retro-navy-light) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 2px solid var(--theme-primary-color) !important;
+  box-shadow: 0 0 15px var(--retro-glow), inset 0 0 10px rgba(255, 185, 0, 0.1) !important;
+  border-radius: 12px !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  padding: 12px 20px !important;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* --- Media Info Badges (4K, HDR, Codecs) --- */
+.mediaInfoItem {
+  background: rgba(0, 29, 61, 0.45) !important; 
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 185, 0, 0.3) !important;
+  border-radius: 5px !important;
+  color: var(--my-gold) !important; 
+  font-family: 'Oswald', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  padding: 2px 8px !important;
+  margin-right: 8px !important;
+}
+
+.mediaInfoItem:hover {
+  background: var(--my-gold-transparent) !important;
+  border: 1px solid var(--my-gold) !important;
+  box-shadow: 0 0 10px var(--retro-glow) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.starIcon {
+  color: var(--my-gold) !important;
+  filter: drop-shadow(0 0 5px var(--retro-glow));
+}
+
+.itemDetailSecondaryText { color: rgba(255, 255, 255, 0.8) !important; }
+
+/* --- Media Info Panels --- */
+.mediaInfoPanel {
+  background-color: rgba(0, 20, 40, 0.7) !important; 
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 185, 0, 0.2) !important; 
+  border-radius: 15px !important;
+  padding: 15px !important;
+}
+
+.mediaInfoPanel h2, 
+.mediaInfoPanel .material-icons {
+  color: var(--my-gold) !important; 
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase;
+}
+
+.mediaInfoAttributeLabel {
+  color: var(--my-gold) !important;
+  font-weight: 600 !important;
+  opacity: 0.9;
+}
+
+.mediaInfoAttributeValue,
+.trackSelectionField .selectLabel,
+.trackSelectionField .selectContainer {
+  color: #fff !important; 
+}
+
+.trackSelectionField .emby-select {
+  background-color: rgba(0, 8, 20, 0.6) !important;
+  border: 1px solid var(--my-gold-transparent) !important;
+  color: var(--my-gold) !important; 
+  padding: 5px 10px !important;
+}
+
+.trackSelectionField .selectArrowContainer { color: var(--my-gold) !important; }
+
+/* --- Action Buttons (Play, Trailer, Icons) --- */
+.mainDetailButtons .emby-button,
+.detailButtons .emby-button,
+.detailButton {
+  background-color: rgba(0, 20, 40, 0.6) !important; 
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid var(--theme-primary-color) !important; 
+  color: #fff !important; 
+  transition: all 0.2s ease-in-out !important;
+}
+
+.mainDetailButtons .btnPlay,
+.detailButtons .btnPlay,
+.btnPlay.detailButton {
+  background-color: var(--theme-primary-color) !important;
+  color: #000 !important; 
+  font-weight: bold !important;
+  box-shadow: 0 0 10px var(--retro-glow) !important;
+}
+
+.mainDetailButtons .emby-button:hover,
+.detailButtons .emby-button:hover,
+.detailButton:hover {
+  background-color: var(--theme-primary-color) !important; 
+  color: #000 !important; 
+  box-shadow: 0 0 15px var(--retro-glow) !important; 
+  transform: scale(1.05) !important; 
+}
+
+.detailButton .material-icons { color: inherit !important; }
+
+/* ============================================================
+   08. VIEWS: ENHANCED TV GUIDE (LIVE TV)
+   ============================================================ */
+.guide-channelHeader, .programCell {
+  background-color: rgba(0, 20, 40, 0.4) !important;
+  border: 1px solid rgba(255, 185, 0, 0.05) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.guide-channelHeader {
+  background-color: var(--retro-navy) !important;
+  border-right: 2px solid var(--theme-primary-color) !important;
+}
+
+.programCell-active, .programCell:hover {
+  background-color: rgba(255, 185, 0, 0.2) !important;
+  border: 2px solid var(--theme-primary-color) !important;
+  box-shadow: 0 0 15px var(--retro-glow), inset 0 0 10px rgba(255, 185, 0, 0.1) !important;
+  border-radius: 8px !important;
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+.guide-currentTimeIndicator {
+  background-color: var(--theme-primary-color) !important;
+  width: 2px !important;
+  box-shadow: 0 0 10px var(--theme-primary-color);
+}
+
+.guide-headerButtons {
+  background-color: var(--retro-navy-light) !important;
+  border-bottom: 1px solid var(--theme-primary-color) !important;
+}
+
+.guide-headerTimes {
+  background-color: var(--retro-navy) !important;
+  color: var(--theme-primary-color) !important;
+  font-family: 'Oswald', sans-serif !important;
+  border-bottom: 1px solid rgba(255, 185, 0, 0.2) !important;
+}
+
+/* Strip media info box styling from Live TV Guide text */
+.programCell .mediaInfoItem,
+.programCell .guideProgramName {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: #ececec !important; 
+  font-family: 'Sofia Sans', sans-serif !important; 
+  font-weight: 500 !important;
+  text-transform: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.programCell .mediaInfoItem:hover,
+.programCell:hover .mediaInfoItem,
+.programCell .guideProgramName:hover,
+.programCell:hover .guideProgramName {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #ececec !important; 
+}
+
+.premiereTvProgram, 
+.newTvProgram, 
+.liveTvProgram, 
+.repeatTvProgram { display: none !important; }
+
+.guideChannelImage { filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.6)) !important; }
+
+.programCell .guideProgramTime {
+  color: rgba(255, 255, 255, 0.6) !important; 
+  font-family: 'Sofia Sans', sans-serif !important;
+  font-size: 0.9em !important;
+  margin-top: 2px !important;
+}
+
+/* ============================================================
+   09. VIEWS: VIDEO PLAYER (OSD) & NOW PLAYING
+   ============================================================ */
+/* --- Background & Layout --- */
+.videoOsdBottom, .videoOsdBottom-video {
+  background: linear-gradient(to top, rgba(0, 8, 20, 0.95) 0%, rgba(0, 29, 61, 0.7) 60%, transparent 100%) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  padding-bottom: 20px !important;
+}
+
+.osdPoster {
+  border: 2px solid var(--my-gold) !important;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8) !important;
+  border-radius: 8px !important;
+}
+
+/* --- Sliders --- */
+.osdValues, .osdTextContainer {
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mdl-slider-background-lower, 
+.emby-slider-background-lower {
+  background-color: var(--my-gold) !important;
+  box-shadow: 0 0 15px var(--retro-glow), 0 0 8px var(--my-gold) !important;
+}
+
+.mdl-slider::-webkit-slider-thumb,
+.emby-slider::-webkit-slider-thumb {
+  background: var(--my-gold) !important;
+  border: 2px solid #000 !important;
+  box-shadow: 0 0 15px var(--my-gold) !important;
+}
+
+/* --- Typography --- */
+.osdTitle {
+  font-family: 'Oswald', sans-serif !important;
+  color: var(--my-gold) !important;
+  font-size: 1.6em !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+}
+
+.osdSecondaryText {
+  font-family: 'Sofia Sans', sans-serif !important;
+  color: #ececec !important;
+  opacity: 0.8;
+}
+
+/* --- Control Buttons --- */
+.videoOsdBottom .paper-icon-button-light {
+  color: #fff !important;
+  transition: all 0.2s ease !important;
+}
+
+.videoOsdBottom .paper-icon-button-light:hover {
+  color: var(--my-gold) !important;
+  transform: scale(1.2) !important;
+  filter: drop-shadow(0 0 8px var(--retro-glow)) !important;
+}
+
+/* --- Up Next / Skip Intro Dialogs --- */
+.btnSkipIntro, .upNextDialog .btnStartNow, .btnStartNow {
+  background: var(--my-gold) !important;
+  color: #000 !important;
+  font-family: 'Oswald', sans-serif !important;
+  font-weight: 700 !important;
+  border-radius: 30px !important;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5) !important;
+  text-transform: uppercase;
+}
+
+.btnSkipIntro:hover, .upNextDialog .btnStartNow:hover, .btnStartNow:hover {
+  background: #fff !important;
+  box-shadow: 0 0 15px var(--retro-glow) !important;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.upNextContainer.upNextDialog {
+  background-color: rgba(0, 29, 61, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--theme-primary-color) !important;
+  border-radius: 20px !important;
+}
