@@ -150,30 +150,6 @@ textarea.txtCustomCss {
   color: var(--theme-primary-color) !important;
 }
 
-@media (min-width: 50em) {
-  .page-withFullDrawer, 
-  .skinBody-withFullDrawer .page, 
-  .page-withDockedDrawer {
-    margin-left: 240px !important;
-    width: calc(100% - 240px) !important;
-    left: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  .skinHeader-withFullDrawer,
-  .skinHeader-withDockedDrawer {
-    left: 240px !important;
-    width: calc(100% - 240px) !important;
-    margin-left: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  .mainDrawer-docked {
-    width: 240px !important;
-    display: block !important;
-  }
-}
-
 /* --- Compact Tabs & Pill Navigation --- */
 .videoOsdBottom .emby-tabs-container, 
 .emby-tabs-container {
