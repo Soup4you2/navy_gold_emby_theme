@@ -446,6 +446,7 @@ div.verticalSection.seriesItemsSection { order: 1 !important; } /* Seasons */
 div.verticalSection.itemNextUpSection { order: 2 !important; } /* Next Up */
 div.verticalSection.peopleSection { order: 3 !important; margin-top: 20px; } /* Cast & Crew */
 div.verticalSection.similarSection { order: 4 !important; } /* More Like This */
+div.verticalSection.aboutSection { order: 5 !important; } /* About */
 
 /* --- Info Banner --- */
 .infoBanner {
